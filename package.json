@@ -1,0 +1,22 @@
+{
+  "name": "zondie",
+  "version": "1.0.0",
+  "description": "zond simulation",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lkatartn/zondie.git"
+  },
+  "author": "Alexey Kutas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lkatartn/zondie/issues"
+  },
+  "homepage": "https://github.com/lkatartn/zondie#readme",
+  "dependencies": {
+    "d3": "^3.5.10"
+  }
+}
