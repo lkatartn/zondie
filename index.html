@@ -2,13 +2,27 @@
 <html>
 <head>
 	<title>Zondie</title>
-	<script type="text/javascript" src="bundle.js" >
-	</script>
+	<script type="text/javascript" src="js/require.js"></script>
+	<script type="text/javascript" src="bundle.js"></script>
+	<style type="text/css">
+		svg {
+			border: dashed 1px;
+			margin: 20px;
+			float: left;
+		}
+		.side{
+			margin:20px;
+			padding: 10px;
+			float: left;
+		}
+	</style>
 </head>
 <body>
 	<div id="container">
-		Zond simulation on
+		<svg id="height" width="500" height="400"></svg>
+		<svg id="position" width="500" height="400"></svg>
+		<svg id="graph" width="500" height="50"></svg>
+		<div class="side">Zond simulation on</div>
 	</div>
-	
 </body>
 </html>

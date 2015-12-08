@@ -18,5 +18,8 @@
   "homepage": "https://github.com/lkatartn/zondie#readme",
   "dependencies": {
     "d3": "^3.5.10"
+  },
+  "devDependencies": {
+    "requirejs": "^2.1.22"
   }
 }
