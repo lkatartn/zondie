@@ -18,13 +18,16 @@ define(["d3"], function(d3) {
 
 	var xAxis = d3.svg.axis().scale(x).orient('bottom');
 	var yAxis = d3.svg.axis().scale(y).orient('left');
-
+	var normalRandom = d3.random.normal(0,0.1)
 	var zondie = function(x) {
-		if (x<20) {
-			var y =x-20
-			return [x,-y*y/100+Math.sqrt(20)]
+		if (x<40) {
+			var y =Math.sqrt(x)
+			return [x,y - x*x/1000 + normalRandom()]
 		}
-		return [x,x/time+Math.sqrt(20)]
+		if (x>80) {
+			return [x , 80/time+Math.sqrt(20)+normalRandom()/5]
+		}
+		return [x,x/time+Math.sqrt(20)+normalRandom()/5]
 	}
 	var svg = d3.select("svg#height");
 	svg.append("g")

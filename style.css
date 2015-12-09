@@ -36,6 +36,10 @@ svg {
 		transform: scale(1);
 	 	opacity: 1;
 	}
+	50% {
+		transform: scale(3);
+		opacity: 0.2;
+	}
 	100% {
 		transform: scale(4);
 		opacity: 0;
