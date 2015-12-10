@@ -13,6 +13,7 @@ define(["d3"], function(d3) {
 	    .range([height-2*padding, 0]);
 
 	var line = d3.svg.line()
+		.interpolate("basis")
 	    .x(function(d) { return x(d[0]); })
 	    .y(function(d) { return y(d[1]); });
 
@@ -20,14 +21,14 @@ define(["d3"], function(d3) {
 	var yAxis = d3.svg.axis().scale(y).orient('left');
 	var normalRandom = d3.random.normal(0,0.1)
 	var zondie = function(x) {
-		if (x<40) {
+		if (x < 40) {
 			var y =Math.sqrt(x)
 			return [x,y - x*x/1000 + normalRandom()]
-		}
-		if (x>80) {
-			return [x , 80/time+Math.sqrt(20)+normalRandom()/5]
-		}
-		return [x,x/time+Math.sqrt(20)+normalRandom()/5]
+		} else
+		if (x < 80) {
+			return [x,x/time+Math.sqrt(20)+normalRandom()/5]
+		} else
+		return [x , 80/time+Math.sqrt(20)+normalRandom()/5]
 	}
 	var svg = d3.select("svg#height");
 	svg.append("g")
