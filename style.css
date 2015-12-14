@@ -1,4 +1,4 @@
-
+/*FOR HEIGHT CHART*/
 svg {
 	border: dashed 1px;
 	margin: 20px;
@@ -54,4 +54,23 @@ circle.zond {
     animation-timing-function: ease-out;
     animation-delay: 0s;
     animation-iteration-count: infinite;
+}
+/* FOR POSITIION CHART*/
+.axis-pos text {
+  font: 10px sans-serif;
+}
+.axis-pos line,
+.axis-pos circle {
+  fill: none;
+  stroke: #777;
+  stroke-dasharray: 1,4;
+}
+.axis-pos :last-of-type circle {
+  stroke: #333;
+  stroke-dasharray: none;
+}
+.line-pos {
+  fill: none;
+  stroke: red;
+  stroke-width: 1.5px;
 }
