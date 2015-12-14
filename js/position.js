@@ -13,7 +13,7 @@ define("position", ["d3"],function(d3){
     var radius = Math.min(width, height) / 2 - 30;
 
     var x = d3.scale.linear()
-	    .domain([0, time])
+	    .domain([0, 0.5])
 	    .range([0, width/2-2*padding]);
 
 	var y = d3.scale.linear()
