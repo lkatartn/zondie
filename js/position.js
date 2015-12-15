@@ -1,29 +1,29 @@
 define("position", ["d3","zondie"],function(d3,zondie){
-	
+return function(zondData) {
 	var height= 400;
 	var width = 500;
 	var time = 170;
 	var padding = 30;
-    var radius = Math.min(width, height) / 2 - 30;
+    var radius = Math.min(width, height) / 2 - padding;
 
     d3.select("svg#position")
 		.append("circle")
 		.attr("class", "zond")
 		.attr("r", 2)
-		.attr("cx",400)
-		.attr("cy", 130.33)
+		.attr("cx",407)
+		.attr("cy", 139.33)
 
 
     var x = d3.scale.linear()
 	    .domain([0, time])
-	    .range([0, width/2-2*padding]);
+	    .range([0, radius]);
 
 	var y = d3.scale.linear()
 	    .domain([0, time])
-	    .range([0, width/2]);
+	    .range([0, radius]);
 
     var line = d3.svg.line()
-		.interpolate("basis")
+		.interpolate("cardinal")
 	    .x(function(d) { return x(d.dist); })
 	    .y(function(d) { return y(d.azimut); });
 
@@ -32,10 +32,10 @@ define("position", ["d3","zondie"],function(d3,zondie){
 	// })
 	var dist = d3.random.normal(0, 5)
 	var norm = d3.random.normal(0.01, 0.01)
-	var data = d3.range(0, 135, 1).map(zondie);
+	var data = zondData;
 
 	var r = d3.scale.linear()
-	    .domain([0, 150])
+	    .domain([0, time])
 	    .range([0, radius]);
 	// var line = d3.svg.line.radial()
 	//     .radius(function(d) { return r(d[1]); })
@@ -46,7 +46,7 @@ define("position", ["d3","zondie"],function(d3,zondie){
 	var gr = svg.append("g")
 	    .attr("class", "r axis-pos")
 		.selectAll("g")
-	    .data(r.ticks(5).slice(1))
+	    .data(r.ticks(10).slice(1))
 		.enter().append("g");
 	gr.append("circle")
 	    .attr("r", r);
@@ -73,4 +73,5 @@ define("position", ["d3","zondie"],function(d3,zondie){
 	    .datum(data)
 	    .attr("class", "line-pos")
 	    .attr("d", line);
+	}
 })
