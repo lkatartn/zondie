@@ -1,35 +1,41 @@
-define("position", ["d3"],function(d3){
-	d3.select("svg#position")
-		.append("circle")
-		.attr("class", "zond")
-		.attr("r", 2)
-		.attr("cx", 100)
-		.attr("cy", 100)
-
+define("position", ["d3","zondie"],function(d3,zondie){
+	
 	var height= 400;
 	var width = 500;
-	var time = 160;
+	var time = 170;
 	var padding = 30;
     var radius = Math.min(width, height) / 2 - 30;
 
+    d3.select("svg#position")
+		.append("circle")
+		.attr("class", "zond")
+		.attr("r", 2)
+		.attr("cx",400)
+		.attr("cy", 130.33)
+
+
     var x = d3.scale.linear()
-	    .domain([0, 0.5])
+	    .domain([0, time])
 	    .range([0, width/2-2*padding]);
 
 	var y = d3.scale.linear()
-	    .domain([0, 10])
-	    .range([height/2-2*padding, 0]);
+	    .domain([0, time])
+	    .range([0, width/2]);
 
     var line = d3.svg.line()
 		.interpolate("basis")
-	    .x(function(d) { return x(d[0]); })
-	    .y(function(d) { return y(d[1]); });
+	    .x(function(d) { return x(d.dist); })
+	    .y(function(d) { return y(d.azimut); });
 
-	var data = d3.range([0, 160, 1]).map(function(elem) {
-		return [elem, elem/1000];
-	})
+	// var data = d3.range([0, 160, 1]).map(function(elem) {
+	// 	return [elem, elem/1000];
+	// })
+	var dist = d3.random.normal(0, 5)
+	var norm = d3.random.normal(0.01, 0.01)
+	var data = d3.range(0, 135, 1).map(zondie);
+
 	var r = d3.scale.linear()
-	    .domain([0, .5])
+	    .domain([0, 150])
 	    .range([0, radius]);
 	// var line = d3.svg.line.radial()
 	//     .radius(function(d) { return r(d[1]); })
@@ -65,6 +71,6 @@ define("position", ["d3"],function(d3){
 	    .text(function(d) { return d + "°"; });
 	svg.append("path")
 	    .datum(data)
-	    .attr("class", "line")
+	    .attr("class", "line-pos")
 	    .attr("d", line);
 })
