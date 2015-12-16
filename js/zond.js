@@ -11,9 +11,6 @@ define(["d3",
 	{
 	var zondSimulationData = d3.range(0, 160,2.5).map(zondie);
 	window.data = zondSimulationData;
-	var dataPercent = d3.scale.quantize()
-		.domain([0,1])
-		.range(zondSimulationData)
 
 		height(zondSimulationData);
 		position(zondSimulationData)
@@ -22,16 +19,16 @@ define(["d3",
 	var posPathNode = d3.select("path.line-pos").node()
 
 	var y = d3.scale.linear()
-	    .domain([0, 10])
-	    .range([340, 0]);
-
+	    .domain([341,0])
+	    .range([0,10]);
+	    window.__y=y
 	function setPercent(from, to, duration) {
 		duration = duration || 100
-		utils.setPathPercent(heightPathNode, from, to, duration);
+		var currentPathHeight= utils.setPathPercent(heightPathNode, from, to, duration);
 		d3.select(".line-invisible").classed('line-invisible', false);
 		var currentPathPosition = utils.setPathPercent(posPathNode, from, to, duration)
 		window.point = posPathNode.getPointAtLength(currentPathPosition)
-		window.heightPoint = heightPathNode.getPointAtLength(currentPathPosition);
+		window.heightPoint = heightPathNode.getPointAtLength(currentPathHeight);
 		d3.select(".zond").remove();
 		var svgPos = d3.select("svg#position")
 		d3.select("svg#position")
@@ -46,7 +43,7 @@ define(["d3",
 	var stepper = function(){
 		setPercent(last, last+step, 900);
 		last+=step;
-		window["text-height"].innerHTML = y.invert(window.heightPoint.y).toFixed(2)+'км';
+		window["text-height"].innerHTML = y(window.heightPoint.y).toFixed(2)+'км';
 		window["text-latitude"].innerHTML = (window.point.y/100+45).toFixed(4)+'°С';
 		window["text-longitude"].innerHTML = (window.point.x/100*0.78+30).toFixed(4)+'°В';
 	}
