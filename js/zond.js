@@ -21,29 +21,34 @@ define(["d3",
 	var heightPathNode = d3.select("path.line-height").node()
 	var posPathNode = d3.select("path.line-pos").node()
 
+	var y = d3.scale.linear()
+	    .domain([0, 10])
+	    .range([340, 0]);
+
 	function setPercent(from, to, duration) {
 		duration = duration || 100
 		utils.setPathPercent(heightPathNode, from, to, duration);
 		d3.select(".line-invisible").classed('line-invisible', false);
 		var currentPathPosition = utils.setPathPercent(posPathNode, from, to, duration)
-		var svgPoint = posPathNode.getPointAtLength(currentPathPosition)
+		window.point = posPathNode.getPointAtLength(currentPathPosition)
+		window.heightPoint = heightPathNode.getPointAtLength(currentPathPosition);
 		d3.select(".zond").remove();
 		var svgPos = d3.select("svg#position")
 		d3.select("svg#position")
 			.append("circle")
 			.attr("class", "zond")
 			.attr("r", 2)
-			.attr("cx", svgPoint.x+ svgPos.attr("width")/2)
-			.attr("cy", svgPoint.y+ svgPos.attr("height")/2)
+			.attr("cx", window.point.x+ svgPos.attr("width")/2)
+			.attr("cy", window.point.y+ svgPos.attr("height")/2)
 	}
 	var last =0;
 	var step =0.03
 	var stepper = function(){
 		setPercent(last, last+step, 900);
 		last+=step;
-		window["text-height"].innerHTML=dataPercent(last).height;
-		window["text-latitude"].innerHTML=dataPercent(last);
-		window["text-longitude"].innerHTML=dataPercent(last);
+		window["text-height"].innerHTML = y.invert(window.heightPoint.y).toFixed(2)+'км';
+		window["text-latitude"].innerHTML = (window.point.y/100+45).toFixed(4)+'°С';
+		window["text-longitude"].innerHTML = (window.point.x/100*0.78+30).toFixed(4)+'°В';
 	}
 	var interval = setInterval(stepper,1000);
 
