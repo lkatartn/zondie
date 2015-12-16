@@ -6,12 +6,12 @@ return function(zondData) {
 	var padding = 30;
     var radius = Math.min(width, height) / 2 - padding;
 
-    d3.select("svg#position")
-		.append("circle")
-		.attr("class", "zond")
-		.attr("r", 2)
-		.attr("cx",407)
-		.attr("cy", 139.33)
+  //   d3.select("svg#position")
+		// .append("circle")
+		// .attr("class", "zond")
+		// .attr("r", 2)
+		// .attr("cx",407)
+		// .attr("cy", 139.33)
 
 
     var x = d3.scale.linear()
@@ -71,7 +71,7 @@ return function(zondData) {
 	    .text(function(d) { return d + "°"; });
 	svg.append("path")
 	    .datum(data)
-	    .attr("class", "line line-pos")
+	    .attr("class", "line line-pos line-invisible")
 	    .attr("d", line);
 	}
 })
