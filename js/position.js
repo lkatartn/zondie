@@ -23,7 +23,7 @@ return function(zondData) {
 	    .range([0, radius]);
 
     var line = d3.svg.line()
-		.interpolate("cardinal")
+		// .interpolate("cardinal")
 	    .x(function(d) { return x(d.dist); })
 	    .y(function(d) { return y(d.azimut); });
 

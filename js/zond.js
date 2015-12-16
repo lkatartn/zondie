@@ -15,6 +15,6 @@ define(["d3",
 	position(zondSimulationData)
 	d3.selectAll("path.line")[0].forEach(function(item) {
 		window.a = item;
-		utils.setPathPercent(item, 0, 1, 10000)
+		utils.setPathPercent(item, 0, 1, 1000)
 	})
 })

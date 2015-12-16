@@ -13,7 +13,7 @@ define(["d3", "zondie"], function(d3, zondie) {
 	    .range([height-2*padding, 0]);
 
 	var line = d3.svg.line()
-		.interpolate("basis")
+		// .interpolate("basis")
 	    .x(function(d) { return x(d.dist); })
 	    .y(function(d) { return y(d.height); });
 
