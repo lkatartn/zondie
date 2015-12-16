@@ -71,7 +71,7 @@ return function(zondData) {
 	    .text(function(d) { return d + "°"; });
 	svg.append("path")
 	    .datum(data)
-	    .attr("class", "line-pos")
+	    .attr("class", "line line-pos")
 	    .attr("d", line);
 	}
 })

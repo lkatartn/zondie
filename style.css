@@ -14,6 +14,7 @@ svg {
   fill: none;
   stroke: steelblue;
   stroke-width: 1.5px;
+  stroke-linecap: round;
 }
 
 .axis--x text {
@@ -29,6 +30,7 @@ svg {
   fill: none;
   stroke: #000;
   shape-rendering: crispEdges;
+  stroke-linecap: round;
 }
 
 @-webkit-keyframes zond-flash {
