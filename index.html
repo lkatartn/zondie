@@ -11,8 +11,13 @@
 	<div id="container">
 		<svg id="height" width="500" height="400"></svg>
 		<svg id="position" width="500" height="400"></svg>
-		<svg id="graph" width="500" height="50"></svg>
-		<div class="side"><marquee>45.9276N 30.2218E</marquee></div>
+		<div class="side">
+			<marquee>Высота - <span id="text-height"></span><br />
+			Широта - <span id="text-latitude"></span><br />
+			Долгота - <span id="text-longitude"></span></marquee>
+			<button id="stop">СТОП</button>
+			<button id="resume">ПРОДОЛЖИТЬ</button>
+		</div>
 	</div>
 </body>
 </html>

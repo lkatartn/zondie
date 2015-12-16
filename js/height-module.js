@@ -32,7 +32,7 @@ define(["d3", "zondie"], function(d3, zondie) {
 
 	svg.append("path")
 	    .datum(zondData)
-	    .attr("class", "line")
+	    .attr("class", "line line-height")
 	    .attr("transform", "translate("+padding+","+padding+")")
 	    .attr("d", line);
 	}

@@ -1,7 +1,7 @@
 define("zondie", ["d3"], function(d3){
 
 	var normalRandom = d3.random.normal(0,0.1)
-	var azimutRandom = d3.random.normal(0,0.4);
+	var azimutRandom = d3.random.normal(0,0.8);
 	var chance = d3.random.normal(0,1)
 	var doOrNot = function(){
 		if (Math.abs(chance())>0.4)

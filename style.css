@@ -1,4 +1,7 @@
 /*FOR HEIGHT CHART*/
+html {
+  font: 16px , 'Open Sans', sans-serif;
+}
 svg {
 	border: dashed 1px;
 	margin: 20px;
@@ -10,7 +13,7 @@ svg {
 	float: left;
 }
 
-.line {
+.line-height {
   fill: none;
   stroke: steelblue;
   stroke-width: 1.5px;
@@ -18,11 +21,11 @@ svg {
 }
 
 .axis--x text {
-  font: 10px sans-serif;
+  font: 10px 'Open Sans', sans-serif;
 }
 
 .axis--y text {
-  font: 10px sans-serif;
+  font: 10px 'Open Sans', sans-serif;
 }
 
 .axis path,
