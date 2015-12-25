@@ -5,15 +5,6 @@ return function(zondData) {
 	var time = 170;
 	var padding = 30;
     var radius = Math.min(width, height) / 2 - padding;
-
-    d3.select("svg#position")
-		.append("circle")
-		.attr("class", "zond")
-		.attr("r", 2)
-		.attr("cx",407)
-		.attr("cy", 139.33)
-
-
     var x = d3.scale.linear()
 	    .domain([0, time])
 	    .range([0, radius]);
@@ -27,9 +18,6 @@ return function(zondData) {
 	    .x(function(d) { return x(d.dist); })
 	    .y(function(d) { return y(d.azimut); });
 
-	// var data = d3.range([0, 160, 1]).map(function(elem) {
-	// 	return [elem, elem/1000];
-	// })
 	var dist = d3.random.normal(0, 5)
 	var norm = d3.random.normal(0.01, 0.01)
 	var data = zondData;
@@ -37,9 +25,6 @@ return function(zondData) {
 	var r = d3.scale.linear()
 	    .domain([0, time])
 	    .range([0, radius]);
-	// var line = d3.svg.line.radial()
-	//     .radius(function(d) { return r(d[1]); })
-	//     .angle(function(d) { return -d[0] + Math.PI / 2; });
 	var svg = d3.select("svg#position")
 		.append("g")
 	    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
@@ -68,10 +53,10 @@ return function(zondData) {
 	    .attr("dy", ".35em")
 	    .style("text-anchor", function(d) { return d < 270 && d > 90 ? "end" : null; })
 	    .attr("transform", function(d) { return d < 270 && d > 90 ? "rotate(180 " + (radius + 6) + ",0)" : null; })
-	    .text(function(d) { return d + "°"; });
+	    .text(function(d) { return ((90-d) < 0) ? (360+90-d) : (90-d) +"°"; });
 	svg.append("path")
 	    .datum(data)
-	    .attr("class", "line line-pos")
+	    .attr("class", "line line-pos line-invisible")
 	    .attr("d", line);
 	}
 })
