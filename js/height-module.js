@@ -4,12 +4,13 @@ define(["d3", "zondie"], function(d3, zondie) {
 	var width = 500;
 	var padding = 30;
 	var time = 160;
+	var maxHeight = 32;
 	var x = d3.scale.linear()
 	    .domain([0, time])
 	    .range([0, width-2*padding]);
 
 	var y = d3.scale.linear()
-	    .domain([0, 10])
+	    .domain([0, maxHeight])
 	    .range([height-2*padding, 0]);
 
 	var line = d3.svg.line()
@@ -32,7 +33,7 @@ define(["d3", "zondie"], function(d3, zondie) {
 
 	svg.append("path")
 	    .datum(zondData)
-	    .attr("class", "line line-height line-invisible")
+	    .attr("class", "line line-height ")
 	    .attr("transform", "translate("+padding+","+padding+")")
 	    .attr("d", line);
 	}
