@@ -2,21 +2,21 @@ define("position", ["d3","zondie"],function(d3,zondie){
 return function(zondData) {
 	var height= 400;
 	var width = 500;
-	var time = 170;
+	var time = 10;
 	var padding = 30;
     var radius = Math.min(width, height) / 2 - padding;
     var x = d3.scale.linear()
-	    .domain([0, time])
+	    .domain([0, time*1000])
 	    .range([0, radius]);
 
 	var y = d3.scale.linear()
-	    .domain([0, time])
+	    .domain([0, time*1000])
 	    .range([0, radius]);
 
     var line = d3.svg.line()
 		// .interpolate("cardinal")
-	    .x(function(d) { return x(d.dist); })
-	    .y(function(d) { return y(d.azimut); });
+	    .x(function(d) { return x(d.position.x); })
+	    .y(function(d) { return y(-d.position.y); });
 
 	var dist = d3.random.normal(0, 5)
 	var norm = d3.random.normal(0.01, 0.01)
@@ -56,7 +56,15 @@ return function(zondData) {
 	    .text(function(d) { return ((90-d) < 0) ? (360+90-d) : (90-d) +"°"; });
 	svg.append("path")
 	    .datum(data)
-	    .attr("class", "line line-pos line-invisible")
+	    .attr("class", "line line-pos")
 	    .attr("d", line);
+
+	return function(datum){
+		d3.select(".line-pos").remove()
+		svg.append("path")
+	    .datum(data)
+	    .attr("class", "line line-pos")
+	    .attr("d", line);
+	}
 	}
 })

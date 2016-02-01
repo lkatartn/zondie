@@ -20,6 +20,22 @@
 			<label for="zsp">Скорость симуляции - от 0.01 до 0.2</label>
 			<input id="zsp" type="number" min="0.01" max="0.2" step="0.01" value="0.01" onchange="window.zondiespeed = +this.value"/>
 		</div>
+		<div id="initial-table"class="side">
+			<table>
+				<tr>
+					<td>Скорость подъема, м/с</td>
+					<td> <input id="asc-rate" type="number" value="5" /> </td>
+				</tr>
+				<tr>
+					<td>Высота взрыва шара, м</td>
+					<td><input id="max-height" type="number" value="15000" /></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+				</tr>
+			</table>
+		</div>
 	</div>
 </body>
 </html>

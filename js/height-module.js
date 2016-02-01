@@ -1,9 +1,10 @@
 define(["d3", "zondie"], function(d3, zondie) {
+	
 	return function(zondData) {
 	var height= 400;
 	var width = 500;
 	var padding = 30;
-	var time = 160;
+	var time = 25;
 	var maxHeight = 32;
 	var x = d3.scale.linear()
 	    .domain([0, time])
@@ -15,8 +16,8 @@ define(["d3", "zondie"], function(d3, zondie) {
 
 	var line = d3.svg.line()
 		// .interpolate("basis")
-	    .x(function(d) { return x(d.dist); })
-	    .y(function(d) { return y(d.height); });
+	    .x(function(d) { return x(d.dist/1000); })
+	    .y(function(d) { return y(d.height/1000); });
 
 	var xAxis = d3.svg.axis().scale(x).orient('bottom');
 	var yAxis = d3.svg.axis().scale(y).orient('left');
@@ -36,5 +37,13 @@ define(["d3", "zondie"], function(d3, zondie) {
 	    .attr("class", "line line-height ")
 	    .attr("transform", "translate("+padding+","+padding+")")
 	    .attr("d", line);
+	return function(datum) {
+		d3.select("path.line-height").remove();
+		svg.append("path")
+	    .datum(datum)
+	    .attr("class", "line line-height ")
+	    .attr("transform", "translate("+padding+","+padding+")")
+	    .attr("d", line);
+	}
 	}
 })
