@@ -84,3 +84,17 @@ circle.zond {
 .line-invisible {	
   stroke-dasharray: 0, 1000;
 }
+.overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(255,255,255,0.5);
+}
+#initial-table {
+  margin: 20px auto;
+  width: 400px;
+  border: 2px dashed black;
+  background-color: #eeeeee;
+}

@@ -11,13 +11,29 @@ define(["d3",
 	{
 	window.data = [];
 	window.zondie = {};
-	var zonder = zondie(5, 22000, 0.5, 2.3)
-	var time = 10;
-	data.push(zonder(10))
-	var redraw_h = height(data);
-	var redraw_p = position(data)
-	window.point = {x:0,y:0}
-	window.zondiespeed = 0.01
+	var ascRate=5;
+	var mass=0.5;
+	var parRad = 1.5;
+	var maxHeight=15000;
+	var zonder;
+	var redraw_p
+	var redraw_h;
+	var initial = function () {
+		window.zondie.wind = utils.getWind();
+		ascRate = utils.getAscRate();
+		mass = utils.getMass();
+		parRad = utils.getParachuteRad();
+		maxHeight = utils.getMaxHeight();
+		document.getElementsByClassName('overlay')[0].remove();
+
+		zonder = zondie(ascRate, maxHeight, mass, parRad)
+		var time = 10;
+		data.push(zonder(10))
+		redraw_h = height(data);
+		redraw_p = position(data)
+		window.point = {x:0,y:0}
+	}
+	document.getElementById('start').onclick = initial;
 	var stepper = function(){ 	
 		window["text-latitude"].innerHTML = (window.point.y/100+45).toFixed(4)+'°С';
 		window["text-longitude"].innerHTML = (window.point.x/100*0.78+30).toFixed(4)+'°В';

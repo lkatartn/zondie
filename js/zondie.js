@@ -64,7 +64,6 @@ define("zondie", ["d3"], function(d3){
 		window.zondie.boom = false;
 		window.zondie.height = 0;
 		window.zondie.position = {x: 0, y: 0};
-		window.zondie.wind = {direction: 'w', value : 1};
 		window.zondie.dist = 0;
 		window.zondie.time = 0;
 
