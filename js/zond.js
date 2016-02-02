@@ -11,7 +11,7 @@ define(["d3",
 	{
 	window.data = [];
 	window.zondie = {};
-	window.zondiespeed=100;
+	window.zondiespeed=8;
 	var ascRate=5;
 	var mass=0.5;
 	var parRad = 1.5;
@@ -31,7 +31,7 @@ define(["d3",
 
 		zonder = zondie(ascRate, maxHeight, mass, parRad)
 		data.push(zonder(10))
-		
+		interval = setInterval(stepper,1000);
 	}
 	document.getElementById('start').onclick = initial;
 	var stepper = function(){ 	
