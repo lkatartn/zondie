@@ -37,6 +37,7 @@ define(["d3",
 	var stepper = function(){ 	
 		window["text-latitude"].innerHTML = (geo.latitude).toFixed(4)+'°';
 		window["text-longitude"].innerHTML = (geo.longtitude).toFixed(4)+'°';
+		window["text-height"].innerHTML = window.zondie.height+'м';
 		window.zondie.wind = utils.getWind();
 		d3.selectAll("#height *").remove();
 		redraw_h = height(data);
