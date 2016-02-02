@@ -12,7 +12,7 @@
 	<div id="container">
 		<div class="overlay">
 		<div id="initial-table" >
-			<table>
+			<table class="init-table">
 				<tr>
 					<td>Географическая широта (-90.000, +90.000)</td>
 					<td><input id="latitude-init" type="number" value="30.0000" /></td>
@@ -37,19 +37,25 @@
 					<td>Диаметр парашюта, м</td>
 					<td><input id="parachute-rad" type="number" value="3.5"></td>
 				</tr>
-				<tr> <td><button id="start">ПУСК!</button></td></tr>
+				<tr> <td colspan="2" align="center"><button class="btn"id="start">ПУСК!</button></td></tr>
 			</table>
 		</div>
 		</div>
 		<svg id="height" width="500" height="400"></svg>
 		<svg id="position" width="500" height="400"></svg>
 		
-		<div >
-			Высота - <span id="text-height"></span><br />
-			Широта - <span id="text-latitude"></span><br />
-			Долгота - <span id="text-longitude"></span><br />
-			Скорость ветра, м/с <input id="wind-val" type="number" value ="1" /> <br />
-			Направление ветра <select id="wind-dir">
+			<div class="side">	
+			<div class="buttons">
+				<button class="btn"  id="stop">СТОП</button>
+				<button  class="btn" id="resume">ПРОДОЛЖИТЬ</button>
+
+			</div>
+<div class="wind">
+	<div class="row">
+		Скорость ветра, м/с <input id="wind-val" type="number" value ="1" /> <br />
+	</div>
+	<div class="row">
+	Направление ветра <select class="select" id="wind-dir">
 				<option value="n" default selected>С</option>
 				<option value="ne">СВ</option>
 				<option value="e">В</option>
@@ -58,11 +64,28 @@
 				<option value="sw">ЮЗ</option>
 				<option value="w">З</option>
 				<option value="nw">СЗ</option>
-			</select> <br />
-			<button id="stop">СТОП</button>
-			<button id="resume">ПРОДОЛЖИТЬ</button>
-			<label for="zsp">Скорость симуляции - от 1 до 100</label>
-			<input id="zsp" type="number" min="1" max="100" step="1" value="8" onchange="window.zondiespeed = +this.value"/>
+			</select>
+			</div>
+			<div class="row">
+				<label for="zsp">Скорость симуляции - от 1 до 100</label>
+				<input id="zsp" type="number" min="1" max="100" step="1" value="8" onchange="window.zondiespeed = +this.value"/>
+			</div>
+			
+</div>
+		<table class="output">
+			<tr>
+				<td>Высота -</td>
+				<td><span id="text-height"></span></td>
+			</tr>
+			<tr>
+				<td>Широта -</td>
+				<td><span id="text-latitude"></span></td>
+			</tr>
+			<tr>
+				<td>Долгота -</td>
+				<td><span id="text-longitude"></span></td>
+			</tr>
+		</table>
 		</div>
 		
 	</div>
