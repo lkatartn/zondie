@@ -2,15 +2,18 @@ define("position", ["d3","zondie"],function(d3,zondie){
 return function(zondData) {
 	var height= 400;
 	var width = 500;
-	var time = 10;
+	var dimention = {};
+	dimention.x = d3.max(zondData, function(el){return el.position.x});
+	dimention.y = d3.max(zondData, function(el){return el.position.y});
+	var maxDim = d3.max(zondData, function (el) {return el.dist})+1500;
 	var padding = 30;
     var radius = Math.min(width, height) / 2 - padding;
     var x = d3.scale.linear()
-	    .domain([0, time*1000])
+	    .domain([0, maxDim])
 	    .range([0, radius]);
 
 	var y = d3.scale.linear()
-	    .domain([0, time*1000])
+	    .domain([0, maxDim])
 	    .range([0, radius]);
 
     var line = d3.svg.line()
@@ -23,7 +26,7 @@ return function(zondData) {
 	var data = zondData;
 
 	var r = d3.scale.linear()
-	    .domain([0, time])
+	    .domain([0, maxDim])
 	    .range([0, radius]);
 	var svg = d3.select("svg#position")
 		.append("g")

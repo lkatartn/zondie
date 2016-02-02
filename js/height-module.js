@@ -4,8 +4,8 @@ define(["d3", "zondie"], function(d3, zondie) {
 	var height= 400;
 	var width = 500;
 	var padding = 30;
-	var time = 25;
-	var maxHeight = 32;
+	var time = (d3.max(zondData, function(e){return e.dist})+1500)/1000;
+	var maxHeight = (window.maxHeight+800)/1000;
 	var x = d3.scale.linear()
 	    .domain([0, time])
 	    .range([0, width-2*padding]);

@@ -17,7 +17,7 @@ define("zondie", ["d3"], function(d3){
 		if (h<11000) {
 			t = 15.04-0.00649*h;
 			p = 101.29*Math.pow((t+273.1)/288.08, 5.256)
-		} else if (h<25000) {
+		} else if (h<=25000) {
 			t = -56.46;
 			p = 22.65*Math.exp(1.73-0.000157*h)
 		} else if (h > 25000) {
@@ -70,6 +70,8 @@ define("zondie", ["d3"], function(d3){
 
 		return function (time) {
 			var z  = window.zondie;
+			var x0 = z.position.x;
+			var y0 = z.position.y;
 			if (!z.boom) {
 				var h = h_before(z.height, AscRate, time);
 				var p = p_before(z.wind, z.position, time)
@@ -84,8 +86,10 @@ define("zondie", ["d3"], function(d3){
 			z.height = h;
 			z.position = p;
 			z.time = timing(z.time,time);
-			z.dist = distance(z.dist, z.wind, time)
-			return {height: h, position: p, dist: z.dist, time: z.time}
+			z.dist = distance(z.dist, z.wind, time);
+			var dx = z.position.x - x0;
+			var dy = z.position.y - y0;
+			return {height: h, position: p, dist: z.dist, time: z.time, dx: dx, dy:dy}
 		}
 	}
 });
