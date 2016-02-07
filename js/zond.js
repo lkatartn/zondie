@@ -20,8 +20,9 @@ define(["d3",
 	var redraw_p
 	var redraw_h;
 	var geo;
+
 	var initial = function () {
-		window.zondie.wind = utils.getWind();
+		window.zondie.wind = utils.getWind(0);
 		ascRate = utils.getAscRate();
 		mass = utils.getMass();
 		parRad = utils.getParachuteRad();
@@ -31,28 +32,68 @@ define(["d3",
 
 		zonder = zondie(ascRate, maxHeight, mass, parRad)
 		data.push(zonder(10))
-		interval = setInterval(stepper,1000);
+		document.getElementById("resume").click();
 	}
 	document.getElementById('start').onclick = initial;
 	var stepper = function(){ 	
 		window["text-latitude"].innerHTML = (geo.latitude).toFixed(4)+'°';
 		window["text-longitude"].innerHTML = (geo.longtitude).toFixed(4)+'°';
-		window["text-height"].innerHTML = window.zondie.height+'м';
-		window.zondie.wind = utils.getWind();
+		window["text-height"].innerHTML = window.zondie.height.toFixed(1)+'м';
 		d3.selectAll("#height *").remove();
 		redraw_h = height(data);
 		d3.selectAll("#position *").remove();
-		redraw_p = position(data)
+		redraw_p = position(data);
+		var svg_height = d3.select('#height');
+		svg_height.append("text")
+		    .attr("x", 15)
+		    .attr("y", 15 )
+		    .attr("text-anchor", "right")
+		    .style("font-size", "18px")
+		    .text("График высоты");
+		svg_height.append("text")
+			.attr("x", 35)
+			.attr("y", 40)
+			.attr("text-anchor", "right")
+		    .style("font-size", "12px")
+		    .text("высота, км");
+		svg_height.append("text")
+			.attr("x", 415)
+			.attr("y", 362)
+			.attr("text-anchor", "right")
+		    .style("font-size", "12px")
+		    .text("длина пути, км");
+
+		var svg_pos = d3.select('#position');
+		svg_pos.append("text")
+		    .attr("x", 15)
+		    .attr("y", 15 )
+		    .attr("text-anchor", "right")
+		    .style("font-size", "18px")
+		    .text("График позиционирования");
 		for (var i=0; i < window.zondiespeed; i++) {
 			var d = zonder(10)
-			if (d==null) {break;}
+			if (d==null) {
+				window["text-latitude"].innerHTML = (geo.latitude).toFixed(4)+'°';
+				window["text-longitude"].innerHTML = (geo.longtitude).toFixed(4)+'°';
+				window["text-height"].innerHTML = window.zondie.height.toFixed(1)+'м';
+				document.getElementById("stop").click();
+				break;
+			}
 			var last_data = window.data[window.data.length-1];
+			window.zondie.wind = utils.getWind(last_data.height);
 			geo = utils.metersToGeo(last_data.dx, last_data.dy, geo.latitude, geo.longtitude)
 			window.data.push(d)
 			redraw_p(window.data);
 			redraw_h(window.data) 
 		};
 	}
+	d3.select('#height')
+		.append("text")
+	    .attr("x", (100))
+	    .attr("y", 10 - 10 )
+	    .attr("text-anchor", "middle")
+	    .style("font-size", "22px")
+	    .text("График значений");
 
 	document.getElementById("stop").onclick = function(){clearInterval(interval)};
 	document.getElementById("resume").onclick = function(){

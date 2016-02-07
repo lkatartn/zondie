@@ -1,8 +1,27 @@
 define("utils",["d3"], function(d3){
 	var utils = {
-		getWind: function (){
-			var windVal = +document.getElementById("wind-val").value;
-			var windDir = document.getElementById("wind-dir").value;
+		getWind: function (height){
+
+			var windyScale = d3.scale.linear()
+				.domain([
+					1000, 2000, 4000, 6000, 
+					 8000, 9000, 10000, 11000, 
+					  12000, 13000, 14000, 15000, 
+					   16000, 17000, 18000, 19000, 
+					    20000])
+				.range([
+					5.7, 6.8, 9.4, 12.6,
+					 15.8, 16.8, 17.9, 18.0,
+					  16.8, 15.0, 14.0, 13.1,
+					   12.3, 12.0, 10.8, 10.6,
+					    11.2])
+			var windyAng = d3.scale.linear()
+				.domain([0, 1000, 4000, 20000])
+				.range([Math.PI/8, Math.PI/8 + Math.PI/6, -Math.PI/8, Math.PI-1.8])
+			// var windVal = +document.getElementById("wind-val").value;
+			// var windDir = document.getElementById("wind-dir").value;
+			var windVal = windyScale(height);
+			var windDir = windyAng(height);
 			return { value: windVal, direction: windDir}
 		},
 		getAscRate: function() {

@@ -15,11 +15,11 @@
 			<table class="init-table">
 				<tr>
 					<td>Географическая широта (-90.000, +90.000)</td>
-					<td><input id="latitude-init" type="number" value="30.0000" /></td>
+					<td><input id="latitude-init" type="number" value="49.9406" /></td>
 				</tr>
 				<tr>
 					<td>Географическая Долгота (-180.000, + 180.000)</td>
-					<td><input id="longtitude-init" type="number" value="45.0000" /></td>
+					<td><input id="longtitude-init" type="number" value="30.7349" /></td>
 				</tr>
 				<tr>
 					<td>Скорость подъема, м/с</td>
@@ -35,7 +35,7 @@
 				</tr>
 				<tr>
 					<td>Диаметр парашюта, м</td>
-					<td><input id="parachute-rad" type="number" value="3.5"></td>
+					<td><input id="parachute-rad" type="number" value="0.5"></td>
 				</tr>
 				<tr> <td colspan="2" align="center"><button class="btn"id="start">ПУСК!</button></td></tr>
 			</table>
@@ -49,7 +49,7 @@
 				<button class="btn"  id="stop">СТОП</button>
 				<button  class="btn" id="resume">ПРОДОЛЖИТЬ</button>
 
-			</div>
+	</div>
 <div class="wind">
 	<div class="row">
 		Скорость ветра, м/с <input id="wind-val" type="number" value ="1" /> <br />
@@ -65,11 +65,11 @@
 				<option value="w">З</option>
 				<option value="nw">СЗ</option>
 			</select>
-			</div>
-			<div class="row">
-				<label for="zsp">Скорость симуляции - от 1 до 100</label>
-				<input id="zsp" type="number" min="1" max="100" step="1" value="8" onchange="window.zondiespeed = +this.value"/>
-			</div>
+	</div>
+	<div class="row">
+		<label for="zsp">Скорость симуляции - от 1 до 100</label>
+		<input id="zsp" type="number" min="1" max="100" step="1" value="8" onchange="window.zondiespeed = +this.value"/>
+	</div>
 			
 </div>
 		<table class="output">
@@ -86,8 +86,8 @@
 				<td><span id="text-longitude"></span></td>
 			</tr>
 		</table>
-		</div>
+</div>
 		
-	</div>
+</div>
 </body>
 </html>

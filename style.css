@@ -101,7 +101,34 @@ input:hover{
 		opacity: 0;
 	}
 }
-
+@keyframes zond-flash {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(3);
+    opacity: 0.2;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+@-moz-keyframes zond-flash {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(3);
+    opacity: 0.2;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
 circle.zond {
 	fill:red;
 	transform-origin: 50% 50%;

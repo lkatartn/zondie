@@ -61,13 +61,19 @@ return function(zondData) {
 	    .datum(data)
 	    .attr("class", "line line-pos")
 	    .attr("d", line);
-
+    
 	return function(datum){
 		d3.select(".line-pos").remove()
+		d3.select("circle.zond").remove()
 		svg.append("path")
-	    .datum(data)
-	    .attr("class", "line line-pos")
-	    .attr("d", line);
+		    .datum(data)
+		    .attr("class", "line line-pos")
+		    .attr("d", line);
+	    svg.append("circle")
+			.attr("class", "zond")
+			.attr("r", 2)
+			.attr("cx", x(datum[datum.length-1].position.x))
+			.attr("cy", y(-datum[datum.length-1].position.y))
 	}
 	}
 })

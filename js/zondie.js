@@ -8,7 +8,7 @@ define("zondie", ["d3"], function(d3){
 		return -power*time*time/2 + height0;
 	}
 	var braking = function (parachuteRad, ro) {
-		return ro*ro*parachuteRad*0.8
+		return ro*ro*(parachuteRad+3)*0.8
 	}
 	var ro = function (height) {
 		var t;
@@ -27,20 +27,31 @@ define("zondie", ["d3"], function(d3){
 		return p/(0.2869 * (t+273.1))
 	}
 	var p_before = function (wind, position0, time) {
-		var windModifier = {
-			'n': [0,1],
-			'ne': [0.7,0.7],
-			'e': [1,0],
-			'se': [0.7, -0.7],
-			's': [0, -1],
-			'sw': [-0.7,-0.7],
-			'w': [-1, 0],
-			'nw': [-0.7, 0.7]
-		};
 		var position1 = {};
-		position1.x = position0.x+ windModifier[wind.direction][0]*wind.value*time;
-		position1.y = position0.y+ windModifier[wind.direction][1]*wind.value*time;
-		return position1
+		var Angular;
+		if (typeof wind.direction == 'string')	{
+			var windModifier = {
+				'n': 0,
+				'ne': Math.PI/6,
+				'e': Math.PI/2,
+				'se': Math.PI*2/3,
+				's': Math.PI,
+				'sw': -Math.PI*2/3,
+				'w': -Math.PI/2,
+				'nw': -Math.PI/6
+			};
+			Angular = windModifier[wind.direction];
+		} else {
+			Angular = wind.direction;
+		}
+		position1.x = position0.x +
+			Math.sin(Angular)*
+			wind.value*time;
+		position1.y = position0.y +
+			Math.cos(Angular)*
+			wind.value*time;
+		
+		return position1;
 	}
 	var distance = function (dist0, wind, time) {
 		return dist0 + wind.value*time;
@@ -85,7 +96,7 @@ define("zondie", ["d3"], function(d3){
 			if (h<=0) return null;
 			z.height = h;
 			z.position = p;
-			z.time = timing(z.time,time);
+			z.time = timing(z.time, time);
 			z.dist = distance(z.dist, z.wind, time);
 			var dx = z.position.x - x0;
 			var dy = z.position.y - y0;
