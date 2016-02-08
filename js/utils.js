@@ -18,9 +18,21 @@ define("utils",["d3"], function(d3){
 					10000, 20000, 30000])
 				.range([Math.PI/8, Math.PI/8 + Math.PI/6,
 					 -Math.PI/8, Math.PI-1.8, Math.PI-1.8]),
+		getWindMode: function() {
+			var mode = document.getElementById("wind-mode").value;
+			if (mode == 'auto') {
+				document.getElementsByClassName("wind")[0].remove();
+			} else {
+				this.getWind = function() {
+					var windVal = +document.getElementById("wind-val").value;
+					var windDir = document.getElementById("wind-dir").value;
+					return { value: windVal, direction: windDir}
+				}
+			}
+			return mode;
+		},
 		getWind: function (height){
-			// var windVal = +document.getElementById("wind-val").value;
-			// var windDir = document.getElementById("wind-dir").value;
+
 			var windVal = this._windyScale(height);
 			var windDir = this._windyAng(height);
 			return { value: windVal, direction: windDir}

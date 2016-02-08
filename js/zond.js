@@ -22,6 +22,7 @@ define(["d3",
 	var geo;
 
 	var initial = function () {
+		utils.getWindMode();
 		window.zondie.wind = utils.getWind(0);
 		ascRate = utils.getAscRate();
 		mass = utils.getMass();
@@ -31,7 +32,7 @@ define(["d3",
 		document.getElementsByClassName('overlay')[0].remove();
 
 		zonder = zondie(ascRate, maxHeight, mass, parRad)
-		data.push(zonder(10))
+		data.push(zonder(1))
 		document.getElementById("resume").click();
 	}
 	document.getElementById('start').onclick = initial;

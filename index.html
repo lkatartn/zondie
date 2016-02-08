@@ -37,6 +37,13 @@
 					<td>Диаметр парашюта, м</td>
 					<td><input id="parachute-rad" type="number" value="0.5"></td>
 				</tr>
+				<tr>
+					<td>Симуляция влияния ветра</td>
+					<td><select id="wind-mode">
+						<option deafault selected value="auto">АВТОМАТИЧЕСКИ</option>
+						<option value="manual">ВРУЧНУЮ</option>
+					</select></td>
+				</tr>
 				<tr> <td colspan="2" align="center"><button class="btn"id="start">ПУСК!</button></td></tr>
 			</table>
 		</div>
@@ -45,11 +52,16 @@
 		<svg id="position" width="500" height="400"></svg>
 		
 			<div class="side">	
-			<div class="buttons">
-				<button class="btn"  id="stop">СТОП</button>
-				<button  class="btn" id="resume">ПРОДОЛЖИТЬ</button>
 
-	</div>
+			<div class="row sim-speed">
+				<label for="zsp">Скорость симуляции - от 1 до 100</label>
+				<input id="zsp" type="number" min="1" max="100" step="1" value="8" onchange="window.zondiespeed = +this.value"/>
+			</div>
+<div class="buttons">
+	<button class="btn"  id="stop">СТОП</button>
+	<button  class="btn" id="resume">ПРОДОЛЖИТЬ</button>
+
+</div>
 <div class="wind">
 	<div class="row">
 		Скорость ветра, м/с <input id="wind-val" type="number" value ="1" /> <br />
@@ -65,10 +77,6 @@
 				<option value="w">З</option>
 				<option value="nw">СЗ</option>
 			</select>
-	</div>
-	<div class="row">
-		<label for="zsp">Скорость симуляции - от 1 до 100</label>
-		<input id="zsp" type="number" min="1" max="100" step="1" value="8" onchange="window.zondiespeed = +this.value"/>
 	</div>
 			
 </div>
