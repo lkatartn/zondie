@@ -77,6 +77,7 @@ define(["d3",
 				window["text-longitude"].innerHTML = (geo.longtitude).toFixed(4)+'°';
 				window["text-height"].innerHTML = window.zondie.height.toFixed(1)+'м';
 				document.getElementById("stop").click();
+				console.log(window.zondie.time);
 				break;
 			}
 			var last_data = window.data[window.data.length-1];

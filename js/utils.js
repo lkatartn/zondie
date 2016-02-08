@@ -1,8 +1,6 @@
 define("utils",["d3"], function(d3){
 	var utils = {
-		getWind: function (height){
-
-			var windyScale = d3.scale.linear()
+		_windyScale: d3.scale.linear()
 				.domain([
 					1000, 2000, 4000, 6000, 
 					 8000, 9000, 10000, 11000, 
@@ -14,14 +12,17 @@ define("utils",["d3"], function(d3){
 					 15.8, 16.8, 17.9, 18.0,
 					  16.8, 15.0, 14.0, 13.1,
 					   12.3, 12.0, 10.8, 10.6,
-					    11.2])
-			var windyAng = d3.scale.linear()
-				.domain([0, 1000, 4000, 20000])
-				.range([Math.PI/8, Math.PI/8 + Math.PI/6, -Math.PI/8, Math.PI-1.8])
+					    11.2].map(function(e){return e * 1.4})),
+		_windyAng: d3.scale.linear()
+				.domain([0, 3000,
+					10000, 20000, 30000])
+				.range([Math.PI/8, Math.PI/8 + Math.PI/6,
+					 -Math.PI/8, Math.PI-1.8, Math.PI-1.8]),
+		getWind: function (height){
 			// var windVal = +document.getElementById("wind-val").value;
 			// var windDir = document.getElementById("wind-dir").value;
-			var windVal = windyScale(height);
-			var windDir = windyAng(height);
+			var windVal = this._windyScale(height);
+			var windDir = this._windyAng(height);
 			return { value: windVal, direction: windDir}
 		},
 		getAscRate: function() {

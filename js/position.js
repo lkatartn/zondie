@@ -5,7 +5,7 @@ return function(zondData) {
 	var dimention = {};
 	dimention.x = d3.max(zondData, function(el){return el.position.x});
 	dimention.y = d3.max(zondData, function(el){return el.position.y});
-	var maxDim = d3.max(zondData, function (el) {return el.dist})+1500;
+	var maxDim = d3.max([dimention.x, dimention.y])/1000*1.2+1;
 	var padding = 30;
     var radius = Math.min(width, height) / 2 - padding;
     var x = d3.scale.linear()
@@ -18,8 +18,8 @@ return function(zondData) {
 
     var line = d3.svg.line()
 		// .interpolate("cardinal")
-	    .x(function(d) { return x(d.position.x); })
-	    .y(function(d) { return y(-d.position.y); });
+	    .x(function(d) { return x(d.position.x/1000); })
+	    .y(function(d) { return y(-d.position.y/1000); });
 
 	var dist = d3.random.normal(0, 5)
 	var norm = d3.random.normal(0.01, 0.01)
