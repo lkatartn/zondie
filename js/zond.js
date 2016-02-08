@@ -88,13 +88,6 @@ define(["d3",
 			redraw_h(window.data) 
 		};
 	}
-	d3.select('#height')
-		.append("text")
-	    .attr("x", (100))
-	    .attr("y", 10 - 10 )
-	    .attr("text-anchor", "middle")
-	    .style("font-size", "22px")
-	    .text("График значений");
 
 	document.getElementById("stop").onclick = function(){clearInterval(interval)};
 	document.getElementById("resume").onclick = function(){

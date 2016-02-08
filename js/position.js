@@ -72,8 +72,8 @@ return function(zondData) {
 	    svg.append("circle")
 			.attr("class", "zond")
 			.attr("r", 2)
-			.attr("cx", x(datum[datum.length-1].position.x))
-			.attr("cy", y(-datum[datum.length-1].position.y))
+			.attr("cx", x(datum[datum.length-1].position.x/1000))
+			.attr("cy", y(-datum[datum.length-1].position.y/1000))
 	}
 	}
 })
